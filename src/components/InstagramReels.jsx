@@ -1,5 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const reels = [
   { type: "iframe", src: "https://player.cloudinary.com/embed/?cloud_name=do0rlgy7c&public_id=reel2_oi4wei" },
@@ -12,29 +15,25 @@ const reels = [
 
 export default function InstagramReels() {
   const containerRef = useRef(null);
-  const trackRef = useRef(null);
-  const videoRefs = useRef([]);
 
-  // Setup Auto-Scroll Animation
+  // Optional: Simple Fade-In Entry Animation
   useEffect(() => {
     const ctx = gsap.context(() => {
-      const track = trackRef.current;
-      
-      // Calculate total width to scroll (half the duplicated content)
-      // We animate xPercent to -50% because we duplicated the items
-      const animation = gsap.to(track, {
-        xPercent: -50, 
-        repeat: -1,
-        duration: 40, // Adjust speed (higher = slower)
-        ease: "none",
-      });
-
-      // Pause animation on hover
-      track.addEventListener("mouseenter", () => animation.pause());
-      track.addEventListener("mouseleave", () => animation.play());
-
+      gsap.fromTo(
+        ".reel-card",
+        { y: 50, opacity: 0 },
+        {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          stagger: 0.1,
+          scrollTrigger: {
+            trigger: ".reels-scroll-container",
+            start: "top 85%",
+          },
+        }
+      );
     }, containerRef);
-
     return () => ctx.revert();
   }, []);
 
@@ -51,39 +50,65 @@ export default function InstagramReels() {
         </p>
       </div>
 
-      {/* MARQUEE TRACK */}
-      <div className="w-full overflow-hidden">
-        {/* We duplicate the map 2 times to create an infinite loop effect */}
-        <div ref={trackRef} className="flex gap-8 w-fit px-4 cursor-grab active:cursor-grabbing">
-          {[...reels, ...reels].map((item, i) => (
+      {/* MANUAL SCROLL CONTAINER */}
+      {/* overflow-x-auto enables manual scrolling */}
+      <div className="reels-scroll-container w-full overflow-x-auto pb-12 px-6 md:px-12 hide-scrollbar">
+        <div className="flex gap-8 w-max">
+          
+          {/* Loop through single list (No Duplication) */}
+          {reels.map((item, i) => (
             <div
               key={i}
-              className="relative flex-shrink-0
+              className="reel-card snap-center relative flex-shrink-0
                          w-[240px] h-[420px]
                          md:w-[300px] md:h-[520px]
                          rounded-[24px] overflow-hidden
-                         shadow-xl bg-black border-[4px] border-white"
+                         shadow-xl bg-black border-[4px] border-white group transition-transform duration-300 hover:scale-[1.02]"
             >
               {item.type === "video" ? (
                 <video
                   src={item.src}
                   className="w-full h-full object-cover"
-                  muted loop playsInline autoPlay
+                  muted 
+                  loop 
+                  playsInline 
+                  autoPlay
+                  controls // Allows manual control
                 />
               ) : (
                 <iframe
                   src={item.src}
-                  className="w-full h-full pointer-events-none" // pointer-events-none ensures scroll isn't blocked by iframe
-                  allow="autoplay; fullscreen"
+                  className="w-full h-full" 
+                  allow="autoplay; fullscreen; encrypted-media; picture-in-picture"
                   loading="lazy"
                 />
               )}
-              {/* Dark Gradient Overlay for style */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent pointer-events-none" />
+              
+              {/* Subtle Gradient at bottom (doesn't block clicks) */}
+              <div className="absolute bottom-0 left-0 right-0 h-32 bg-gradient-to-t from-black/60 to-transparent pointer-events-none" />
             </div>
           ))}
+
+          {/* Spacer to allow scrolling past the last item */}
+          <div className="w-6 md:w-12 flex-shrink-0"></div>
         </div>
       </div>
+
+      {/* Manual Scroll Hint */}
+      <div className="text-center text-gray-400 text-xs font-heading tracking-widest uppercase opacity-60">
+        Swipe or Scroll to Watch &rarr;
+      </div>
+
+      {/* Hide Scrollbar CSS */}
+      <style>{`
+        .hide-scrollbar::-webkit-scrollbar {
+          display: none;
+        }
+        .hide-scrollbar {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+      `}</style>
 
     </section>
   );
