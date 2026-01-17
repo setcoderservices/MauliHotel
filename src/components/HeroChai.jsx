@@ -15,11 +15,10 @@ export default function HeroChai() {
   const [images, setImages] = useState([]);
   const [percentLoaded, setPercentLoaded] = useState(0);
 
-  // 1️⃣ ROBUST PRELOADER
+  // 1️⃣ PRELOADER
   useEffect(() => {
     let loadedCount = 0;
     const imgs = [];
-
     const onFinishLoading = () => {
       loadedCount++;
       const percent = Math.round((loadedCount / FRAME_COUNT) * 100);
@@ -30,10 +29,7 @@ export default function HeroChai() {
       const img = new Image();
       img.src = `${IMAGES_PATH}${String(i).padStart(4, "0")}.jpg`;
       img.onload = onFinishLoading;
-      img.onerror = () => {
-        console.warn(`⚠️ Frame ${i} failed to load. Skipping.`);
-        onFinishLoading(); 
-      };
+      img.onerror = onFinishLoading;
       imgs.push(img);
     }
     setImages(imgs);
@@ -61,10 +57,10 @@ export default function HeroChai() {
     render(0);
 
     const ctxGsap = gsap.context(() => {
-      // Setup initial states
-      gsap.set(".netflix-line-1", { opacity: 0, y: 30 }); // Animate whole line now
-      gsap.set(".netflix-line-2 p", { opacity: 0, x: 20 });
-      gsap.set(".netflix-line-3", { opacity: 0, scale: 0.9 });
+      // Initial States
+      gsap.set(".text-layer-1", { opacity: 0, y: 30 });
+      gsap.set(".text-layer-2", { opacity: 0, x: 30 });
+      gsap.set(".text-layer-3", { opacity: 0, y: 30 });
 
       const frame = { current: 0 };
 
@@ -72,8 +68,8 @@ export default function HeroChai() {
         scrollTrigger: {
           trigger: sectionRef.current,
           start: "top top",
-          end: "+=250%", 
-          scrub: 1,
+          end: "+=100%", // 1 Scroll to finish
+          scrub: 1, 
           pin: true,
           anticipatePin: 1,
         },
@@ -84,15 +80,14 @@ export default function HeroChai() {
         current: FRAME_COUNT - 1,
         snap: "current",
         ease: "none",
-        duration: 10,
+        duration: 5,
         onUpdate: () => render(frame.current),
       }, 0);
 
-      // Text Sync (Now animating the whole block, not letters)
-      tl.to(".netflix-line-1", { opacity: 1, y: 0, duration: 1.5 }, 0.5);
-      tl.to(".netflix-line-1", { opacity: 0.3, duration: 1 }, 3);
-      tl.to(".netflix-line-2 p", { opacity: 1, x: 0, stagger: 0.2, duration: 1.5 }, 3.5);
-      tl.to(".netflix-line-3", { opacity: 1, scale: 1, duration: 1.5 }, 7.5);
+      // Text Animations
+      tl.to(".text-layer-1", { opacity: 1, y: 0, duration: 2, ease: "power2.out" }, 0.5);
+      tl.to(".text-layer-2", { opacity: 1, x: 0, duration: 2, ease: "power2.out" }, 1.5);
+      tl.to(".text-layer-3", { opacity: 1, y: 0, duration: 2, ease: "power2.out" }, 2.5);
 
     }, sectionRef);
 
@@ -106,10 +101,10 @@ export default function HeroChai() {
       {percentLoaded < 100 && (
         <div className="absolute inset-0 z-50 flex items-center justify-center bg-white">
           <div className="text-center w-64">
-            <h2 className="text-2xl font-serif text-mauli-red mb-2">Brewing...</h2>
-            <div className="w-full h-1 bg-gray-200 rounded overflow-hidden">
+            <h2 className="text-2xl font-serif text-[#C0392B] mb-2 font-bold">Brewing...</h2>
+            <div className="w-full h-1 bg-gray-100 rounded-full overflow-hidden">
               <div 
-                className="h-full bg-mauli-orange transition-all duration-100" 
+                className="h-full bg-[#FF8C00] transition-all duration-100 ease-out" 
                 style={{ width: `${percentLoaded}%` }} 
               />
             </div>
@@ -117,34 +112,49 @@ export default function HeroChai() {
         </div>
       )}
 
-      {/* CANVAS */}
-      <div className="absolute inset-0 z-10 flex items-center justify-center">
-        <canvas ref={canvasRef} className="h-[85vh] w-auto max-w-[90vw] object-contain" />
+      {/* 🟢 CANVAS (Bottom Layer - z-0) */}
+      {/* Sent to back so text appears in front */}
+      <div className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none">
+        <canvas 
+          ref={canvasRef} 
+          className="h-[85vh] md:h-[90vh] w-auto max-w-none object-contain"
+        />
       </div>
 
-      {/* TEXT LAYERS */}
-      <div className="pointer-events-none select-none z-20 absolute inset-0">
+      {/* 🔴 TEXT LAYERS (Top Layer - z-20) */}
+      {/* Brought to front */}
+      <div className="absolute inset-0 z-20 w-full h-full pointer-events-none">
         
-        {/* LINE 1 - FIXED: Removed .split("") */}
-        <div className="netflix-line-1 absolute top-[25%] right-8 md:right-24 max-w-xl text-right">
-          <h1 className="text-3xl md:text-5xl font-serif text-[#2b2b2b] tracking-wide leading-tight">
+        {/* TOP RIGHT TITLE */}
+        <div className="text-layer-1 absolute top-[12%] md:top-[18%] right-[5%] md:right-[8%] text-right max-w-[90%] md:max-w-3xl">
+          <h1 className="font-heading text-5xl md:text-7xl font-extrabold text-[#C0392B] leading-[1.1] opacity-90 drop-shadow-sm">
             {t("chaiHero.line1", "The Art of Chai")}
           </h1>
+          <p className="text-[#FF8C00] text-xl md:text-3xl font-serif font-bold italic mt-2 md:mt-4 drop-shadow-sm">
+             #MauliAmruttulya
+          </p>
         </div>
 
-        {/* LINE 2 */}
-        <div className="netflix-line-2 absolute top-[50%] right-8 md:right-24 max-w-md text-right text-sm md:text-lg text-[#4a4a4a] leading-loose font-medium">
-          <p>{t("chaiHero.branch1", "Serving Pune since 1995")}</p>
-          <p>{t("chaiHero.branch2", "Over 10 locations across Maharashtra")}</p>
+        {/* MIDDLE RIGHT LOCATIONS */}
+        <div className="text-layer-2 absolute top-[50%] right-[5%] md:right-[8%] text-right space-y-3 md:space-y-4 max-w-[250px] md:max-w-md">
+           <p className="text-gray-800 text-sm md:text-xl font-bold leading-snug border-r-4 border-[#C0392B] pr-3 bg-white/30 backdrop-blur-[2px]">
+             {t("chaiHero.branch1", "Serving Pune since 1995")}
+           </p>
+           <p className="text-gray-800 text-sm md:text-xl font-bold leading-snug border-r-4 border-[#FF8C00] pr-3 bg-white/30 backdrop-blur-[2px]">
+             {t("chaiHero.branch2", "Over 10 locations across Maharashtra")}
+           </p>
         </div>
 
-        {/* LINE 3 */}
-        <div className="netflix-line-3 absolute bottom-16 left-8 md:left-24 max-w-md text-left bg-white/80 backdrop-blur-sm p-4 rounded-lg md:bg-transparent md:backdrop-blur-none md:p-0">
-          <h3 className="text-2xl md:text-3xl font-serif text-[#c56a2b] mb-2">{t("chaiHero.tag", "Mauli Amruttulya")}</h3>
-          <p className="text-[#3a3a3a] text-sm md:text-base leading-relaxed">
+        {/* BOTTOM LEFT TAGLINE */}
+        <div className="text-layer-3 absolute bottom-[8%] left-[5%] md:left-[8%] max-w-[90%] md:max-w-2xl">
+          <h3 className="text-4xl md:text-6xl font-extrabold text-[#C0392B] mb-2 md:mb-4 font-serif leading-tight drop-shadow-sm">
+            {t("chaiHero.tag", "Mauli Amruttulya")}
+          </h3>
+          <p className="text-gray-600 text-lg md:text-2xl font-bold leading-relaxed bg-white/50 backdrop-blur-[2px] inline-block pr-4 rounded-r-lg">
             {t("chaiHero.line2", "Experience the warmth of tradition in every sip.")}
           </p>
         </div>
+
       </div>
     </section>
   );
