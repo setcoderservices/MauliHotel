@@ -1,4 +1,5 @@
 export const resources = {
+  // 🟢 MARATHI (मराठी)
   mr: {
     translation: {
       heroTitle: "हॉटेल माऊली",
@@ -40,65 +41,52 @@ export const resources = {
       m5Desc: "झणझणीत रस्सा आणि फरसाण, कोल्हापुरी चव.",
       m6Name: "समोसा",
       m6Desc: "खुसखुशीत कव्हर आणि बटाटा भाजीचे सारण.",
-   chaiHero: {
+
+      chaiHero: {
         line1: "माऊली कुंदा चहा",
         branch1: "ब्रांच १ 📍 हॉटेल माऊली गलवाडे रोड, शिरपूर हायवे, अमळनेर, जि. जळगांव",
         branch2: "ब्रांच २ 📍 करवंद नाका, कुसुम प्लाझा, फार्मसी कॉलेज जवळ, शिरपूर",
         tag: "ओरिजनल कुंदा चहा वाला",
         line2: "कॉपी करतील, पण ओरिजनल टेस्ट कुणी देऊ शकत नाही.",
         line3: "महाराष्ट्राची नं १ चहा — माऊली स्पेशल कुंदा चहा."
-      }, },
+      },
+
+      contact: {
+        title: "हॉटेल माऊलीला भेट द्या",
+        subtitle: "अस्सल कुंदा चहाचा अनुभव घ्या",
+        openingHours: "कामाची वेळ",
+        everyDay: "दररोज चालू",
+        days: "सोम - रवि",
+        time: "सकाळी ६ - रात्री ११",
+        openStatus: "सध्या चालू आहे",
+        closedStatus: "सध्या बंद आहे",
+        contactUs: "संपर्क साधा",
+        phone: "फोन",
+        email: "ईमेल करा",
+        whatsapp: "व्हॉट्सॲपवर चॅट करा",
+        getDirections: "दिशानिर्देश मिळवा",
+        footerName: "हॉटेल माऊली",
+        developer: "वेब डेव्हलपरशी संपर्क साधा",
+        
+        tabs: {
+          amalner: "अमळनेर",
+          shirpur: "शिरपूर"
+        },
+        branches: {
+          amalner: {
+            name: "अमळनेर शाखा",
+            address: "हॉटेल माऊली, गलवाडे रोड, शिरपूर हायवे, अमळनेर, जि. जळगांव"
+          },
+          shirpur: {
+            name: "शिरपूर शाखा",
+            address: "करवंद नाका, कुसुम प्लाझा, फार्मसी कॉलेज जवळ, शिरपूर"
+          }
+        }
+      }
+    }
   },
-  en: {
-    translation: {
-      heroTitle: "Hotel Mauli",
-      heroSubtitle: "Kunda Chaha",
-      exploreMenu: "Explore Menu",
-      watchReel: "Watch Reel",
 
-      guaranteeTitle: "About Us",
-      aboutUsTitle: "Hotel Mauli",
-      aboutUsText: "Dear customers and entrepreneurs! Thank you sincerely for the immense response to 'Kunda Chaha'. Currently, Hotel Mauli has only two branches – Amalner and Shirpur, both running under my personal supervision. If a decision regarding franchising is taken in the future, official information will be provided only through our Instagram page.",
-
-      noticeTitle: "Special Notice",
-      noticeText: "Thank you for the overwhelming response to Hotel Mauli's 'Kunda Chaha'! Currently, Hotel Mauli has only two branches – Amalner and Shirpur.",
-      feelingText: "This is not just a hotel, it is a feeling built on your trust.",
-
-      testimonialsTitle: "Guest Impressions",
-      testimonialsSubtitle: "Stories brewed with warmth & hospitality",
-      t1Name: "Rajesh Patil",
-      t1Role: "Food Blogger",
-      t1Text: "The Kunda Chaha here is absolutely divine. It takes me back to my childhood.",
-      t2Name: "Priya Sharma",
-      t2Role: "Traveler",
-      t2Text: "A perfect blend of tradition and taste. The ambiance is as warm as the tea.",
-      t3Name: "Amit Deshmukh",
-      t3Role: "Local Guide",
-      t3Text: "Best place for a quick break. The service is excellent and the tea is unmatched.",
-
-      menuTitle: "Our Menu",
-      menuSubtitle: "Our Special Flavors",
-      m1Name: "Kunda Chaha",
-      m1Desc: "Our famous tea made with khoya and special spices.",
-      m2Name: "Masala Chai",
-      m2Desc: "Traditional tea with the aroma of ginger and cardamom.",
-      m3Name: "Bun Maska",
-      m3Desc: "Fresh bun with plenty of butter, a perfect pair with tea.",
-      m4Name: "Vada Pav",
-      m4Desc: "Mumbai's pride, hot potato vada served with bread.",
-      m5Name: "Misal Pav",
-      m5Desc: "Spicy curry with farsan, a Kolhapuri delight.",
-      m6Name: "Samosa",
-      m6Desc: "Crispy cover filled with savory potato stuffing.",
-   chaiHero: {
-        line1: "Mauli Kunda Chai",
-        branch1: "Branch 1 📍 Hotel Mauli, Galwade Road, Shirpur Highway, Amalner",
-        branch2: "Branch 2 📍 Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur",
-        tag: "The Original Kunda Chai",
-        line2: "Many will copy, but no one can deliver the original taste",
-        line3: "Maharashtra’s No. 1 Chai — Mauli Special Kunda Chai"
-      }, },
-  },
+  // 🟠 HINDI (हिंदी)
   hi: {
     translation: {
       heroTitle: "होटल माऊली",
@@ -140,13 +128,135 @@ export const resources = {
       m5Desc: "तीखी तरी और फरसाण, कोल्हापुरी स्वाद।",
       m6Name: "समोसा",
       m6Desc: "कुरकुरी परत और आलू की सब्जी का भरावन।",
-   chaiHero: {
+
+      chaiHero: {
         line1: "माऊली कुंदा चहा",
         branch1: "शाखा 1 📍 होटल माऊली, गलवाड़े रोड, शिरपुर हाईवे, अमलनेर, जलगांव",
         branch2: "शाखा 2 📍 करवंद नाका, कुसुम प्लाज़ा, फार्मेसी कॉलेज के पास, शिरपुर",
         tag: "असली कुंदा चहा वाला",
         line2: "नकल कर सकते हैं, लेकिन असली स्वाद कोई नहीं दे सकता!",
         line3: "महाराष्ट्र की नं 1 चाय — माऊली स्पेशल कुंदा चाय"
-      }, },
+      },
+
+      contact: {
+        title: "होटल माऊली पधारें",
+        subtitle: "असली कुंदा चाय का अनुभव",
+        openingHours: "खुलने का समय",
+        everyDay: "हर दिन खुला",
+        days: "सोम - रवि",
+        time: "सुबह 6 - रात 11",
+        openStatus: "अभी खुला है",
+        closedStatus: "अभी बंद है",
+        contactUs: "संपर्क करें",
+        phone: "फ़ोन",
+        email: "ईमेल करें",
+        whatsapp: "व्हाट्सएप पर चैट करें",
+        getDirections: "दिशा - निर्देश प्राप्त करें",
+        footerName: "होटल माऊली",
+        developer: "वेब डेवलपर से संपर्क करें",
+        
+        tabs: {
+          amalner: "अमलनेर",
+          shirpur: "शिरपुर"
+        },
+        branches: {
+          amalner: {
+            name: "अमलनेर शाखा",
+            address: "होटल माऊली, गलवाड़े रोड, शिरपुर हाईवे, अमलनेर, जलगांव"
+          },
+          shirpur: {
+            name: "शिरपुर शाखा",
+            address: "करवंद नाका, कुसुम प्लाज़ा, फार्मेसी कॉलेज के पास, शिरपुर"
+          }
+        }
+      }
+    }
   },
+
+  // 🔵 ENGLISH
+  en: {
+    translation: {
+      heroTitle: "Hotel Mauli",
+      heroSubtitle: "Kunda Chaha",
+      exploreMenu: "Explore Menu",
+      watchReel: "Watch Reel",
+
+      guaranteeTitle: "About Us",
+      aboutUsTitle: "Hotel Mauli",
+      aboutUsText: "Dear customers and entrepreneurs! Thank you sincerely for the immense response to 'Kunda Chaha'. Currently, Hotel Mauli has only two branches – Amalner and Shirpur, both running under my personal supervision. If a decision regarding franchising is taken in the future, official information will be provided only through our Instagram page.",
+
+      noticeTitle: "Special Notice",
+      noticeText: "Thank you for the overwhelming response to Hotel Mauli's 'Kunda Chaha'! Currently, Hotel Mauli has only two branches – Amalner and Shirpur.",
+      feelingText: "This is not just a hotel, it is a feeling built on your trust.",
+
+      testimonialsTitle: "Guest Impressions",
+      testimonialsSubtitle: "Stories brewed with warmth & hospitality",
+      t1Name: "Rajesh Patil",
+      t1Role: "Food Blogger",
+      t1Text: "The Kunda Chaha here is absolutely divine. It takes me back to my childhood.",
+      t2Name: "Priya Sharma",
+      t2Role: "Traveler",
+      t2Text: "A perfect blend of tradition and taste. The ambiance is as warm as the tea.",
+      t3Name: "Amit Deshmukh",
+      t3Role: "Local Guide",
+      t3Text: "Best place for a quick break. The service is excellent and the tea is unmatched.",
+
+      menuTitle: "Our Menu",
+      menuSubtitle: "Our Special Flavors",
+      m1Name: "Kunda Chaha",
+      m1Desc: "Our famous tea made with khoya and special spices.",
+      m2Name: "Masala Chai",
+      m2Desc: "Traditional tea with the aroma of ginger and cardamom.",
+      m3Name: "Bun Maska",
+      m3Desc: "Fresh bun with plenty of butter, a perfect pair with tea.",
+      m4Name: "Vada Pav",
+      m4Desc: "Mumbai's pride, hot potato vada served with bread.",
+      m5Name: "Misal Pav",
+      m5Desc: "Spicy curry with farsan, a Kolhapuri delight.",
+      m6Name: "Samosa",
+      m6Desc: "Crispy cover filled with savory potato stuffing.",
+
+      chaiHero: {
+        line1: "Mauli Kunda Chai",
+        branch1: "Branch 1 📍 Hotel Mauli, Galwade Road, Shirpur Highway, Amalner",
+        branch2: "Branch 2 📍 Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur",
+        tag: "The Original Kunda Chai",
+        line2: "Many will copy, but no one can deliver the original taste",
+        line3: "Maharashtra’s No. 1 Chai — Mauli Special Kunda Chai"
+      },
+
+      contact: {
+        title: "Visit Hotel Mauli",
+        subtitle: "Authentic Kunda Chaha Experience",
+        openingHours: "Opening Hours",
+        everyDay: "Every single day.",
+        days: "Mon - Sun",
+        time: "6 AM - 11 PM",
+        openStatus: "We are Open Now",
+        closedStatus: "Currently Closed",
+        contactUs: "Contact Us",
+        phone: "Phone",
+        email: "Email us directly",
+        whatsapp: "Chat on WhatsApp",
+        getDirections: "Get Directions",
+        footerName: "Hotel Mauli",
+        developer: "Contact Web Developer",
+        
+        tabs: {
+          amalner: "Amalner",
+          shirpur: "Shirpur"
+        },
+        branches: {
+          amalner: {
+            name: "Amalner Branch",
+            address: "Hotel Mauli, Galwade Road, Shirpur Highway, Amalner, Jalgaon"
+          },
+          shirpur: {
+            name: "Shirpur Branch",
+            address: "Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur"
+          }
+        }
+      }
+    }
+  }
 };
