@@ -7,7 +7,6 @@ import {
   Clock, 
   MapPin, 
   Instagram, 
-  Facebook, 
   ArrowUpRight, 
   MessageCircle,
   Code,
@@ -22,19 +21,23 @@ export default function ContactSection() {
   const [activeBranch, setActiveBranch] = useState("amalner");
   const [isOpen, setIsOpen] = useState(false);
 
-  // 📍 BRANCH DATA (Moved inside to use 't')
+  // 📍 BRANCH DATA (With REAL Google Maps Links)
   const BRANCHES = {
     amalner: {
       name: t("contact.branches.amalner.name", "Amalner Branch"),
       address: t("contact.branches.amalner.address", "Hotel Mauli, Galwade Road, Shirpur Highway, Amalner, Jalgaon"),
-      mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.0425267864463!2d75.0642133752554!3d20.990906980649174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddec4f00000001%3A0x464875084931215!2sHotel%20Mauli!5e0!3m2!1sen!2sin!4v1709224440000!5m2!1sen!2sin",
-      directionLink: "https://maps.app.goo.gl/YourAmalnerLink"
+      // ✅ FIXED: Real Google Maps Embed
+      mapSrc: "https://maps.google.com/maps?q=Hotel+Mauli,+Galwade+Road,+Amalner&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      // ✅ FIXED: Real 'Get Directions' Link
+      directionLink: "https://www.google.com/maps/dir//Hotel+Mauli,+Galwade+Road,+Amalner"
     },
     shirpur: {
       name: t("contact.branches.shirpur.name", "Shirpur Branch"),
       address: t("contact.branches.shirpur.address", "Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur"),
-      mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.394875553556!2d74.8770543752643!3d21.345244980385973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdf270000000001%3A0x123456789!2sShirpurLocation!5e0!3m2!1sen!2sin!4v1709224440000!5m2!1sen!2sin",
-      directionLink: "https://maps.app.goo.gl/YourShirpurLink"
+      // ✅ FIXED: Real Google Maps Embed
+      mapSrc: "https://maps.google.com/maps?q=Karvand+Naka,+Kusum+Plaza,+Shirpur&t=&z=15&ie=UTF8&iwloc=&output=embed",
+      // ✅ FIXED: Real 'Get Directions' Link
+      directionLink: "https://www.google.com/maps/dir//Karvand+Naka,+Kusum+Plaza,+Shirpur"
     }
   };
 
@@ -198,7 +201,7 @@ export default function ContactSection() {
             </a>
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
+            <a href="https://www.instagram.com/hotel_mauli_amalner?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
               <Instagram size={14} /> Instagram
             </a>
           </div>
