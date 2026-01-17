@@ -191,12 +191,10 @@ export default function ContactSection() {
             </a>
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
+            <a href="https://www.instagram.com/hotel_mauli_amalner?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
               <Instagram size={14} /> Instagram
             </a>
-            <a href="#" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
-              <Facebook size={14} /> Facebook
-            </a>
+           
           </div>
         </div>
 
