@@ -11,36 +11,32 @@ import {
   ArrowUpRight, 
   MessageCircle,
   Code,
-  Navigation // 🟢 Added Navigation Icon
+  Navigation 
 } from "lucide-react";
 
 gsap.registerPlugin(ScrollTrigger);
-
-// 📍 BRANCH DATA (With Working Map Links)
-const BRANCHES = {
-  amalner: {
-    name: "Amalner Branch",
-    address: "Hotel Mauli, Galwade Road, Shirpur Highway, Amalner, Jalgaon",
-    // 🔗 Embeds the map showing the specific location
-    mapSrc: "https://maps.google.com/maps?q=Hotel+Mauli+Galwade+Road+Amalner&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    // 🔗 Direct link for "Get Directions" button
-    directionLink: "https://www.google.com/maps/dir/?api=1&destination=Hotel+Mauli+Galwade+Road+Amalner"
-  },
-  shirpur: {
-    name: "Shirpur Branch",
-    address: "Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur",
-    // 🔗 Embeds the map searching for the specific intersection
-    mapSrc: "https://maps.google.com/maps?q=Karvand+Naka+Shirpur+Kusum+Plaza&t=&z=15&ie=UTF8&iwloc=&output=embed",
-    // 🔗 Direct link for "Get Directions" button
-    directionLink: "https://www.google.com/maps/dir/?api=1&destination=Karvand+Naka+Shirpur+Kusum+Plaza"
-  }
-};
 
 export default function ContactSection() {
   const { t } = useTranslation();
   const sectionRef = useRef(null);
   const [activeBranch, setActiveBranch] = useState("amalner");
   const [isOpen, setIsOpen] = useState(false);
+
+  // 📍 BRANCH DATA (Moved inside to use 't')
+  const BRANCHES = {
+    amalner: {
+      name: t("contact.branches.amalner.name", "Amalner Branch"),
+      address: t("contact.branches.amalner.address", "Hotel Mauli, Galwade Road, Shirpur Highway, Amalner, Jalgaon"),
+      mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3725.0425267864463!2d75.0642133752554!3d20.990906980649174!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bddec4f00000001%3A0x464875084931215!2sHotel%20Mauli!5e0!3m2!1sen!2sin!4v1709224440000!5m2!1sen!2sin",
+      directionLink: "https://maps.app.goo.gl/YourAmalnerLink"
+    },
+    shirpur: {
+      name: t("contact.branches.shirpur.name", "Shirpur Branch"),
+      address: t("contact.branches.shirpur.address", "Karvand Naka, Kusum Plaza, Near Pharmacy College, Shirpur"),
+      mapSrc: "https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3717.394875553556!2d74.8770543752643!3d21.345244980385973!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bdf270000000001%3A0x123456789!2sShirpurLocation!5e0!3m2!1sen!2sin!4v1709224440000!5m2!1sen!2sin",
+      directionLink: "https://maps.app.goo.gl/YourShirpurLink"
+    }
+  };
 
   useEffect(() => {
     const hour = new Date().getHours();
@@ -61,7 +57,7 @@ export default function ContactSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="relative bg-[#F9F6F1] text-[#2b2b2b] py-16 px-4 md:px-8 overflow-hidden">
+    <section ref={sectionRef} id="contact" className="relative bg-[#F9F6F1] text-[#2b2b2b] py-16 px-4 md:px-8 overflow-hidden">
       
       {/* Background Decor */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[500px] h-[500px] bg-[#FF8C00] rounded-full blur-[120px] opacity-10 pointer-events-none"></div>
@@ -71,10 +67,10 @@ export default function ContactSection() {
         {/* HEADER */}
         <div className="contact-title text-center mb-10">
           <h2 className="text-4xl md:text-5xl font-serif text-[#C0392B] mb-3">
-            {t ("Visit Hotel Mauli")}
+            {t("contact.title", "Visit Hotel Mauli")}
           </h2>
           <p className="text-lg text-gray-600 max-w-xl mx-auto font-medium">
-            {t("Authentic Kunda Chaha Experience")}
+            {t("contact.subtitle", "Authentic Kunda Chaha Experience")}
           </p>
         </div>
 
@@ -90,24 +86,26 @@ export default function ContactSection() {
                   onClick={() => setActiveBranch('amalner')}
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${activeBranch === 'amalner' ? 'bg-[#C0392B] text-white shadow-sm' : 'text-gray-500 hover:bg-gray-100'}`}
                 >
-                  Amalner
+                  {t("contact.tabs.amalner", "Amalner")}
                 </button>
                 <button 
                   onClick={() => setActiveBranch('shirpur')}
                   className={`px-4 py-1.5 rounded-full text-xs font-bold transition-all duration-300 ${activeBranch === 'shirpur' ? 'bg-[#C0392B] text-white shadow-sm' : 'text-gray-500 hover:bg-gray-100'}`}
                 >
-                  Shirpur
+                  {t("contact.tabs.shirpur", "Shirpur")}
                 </button>
              </div>
 
-             {/* ↗️ GET DIRECTIONS BUTTON (New) */}
+             {/* ↗️ GET DIRECTIONS BUTTON */}
              <a 
                href={BRANCHES[activeBranch].directionLink}
                target="_blank"
                rel="noopener noreferrer"
                className="absolute top-4 right-4 z-20 bg-white/95 backdrop-blur-md px-3 py-1.5 rounded-full shadow-md border border-gray-200 flex items-center gap-2 hover:bg-[#C0392B] hover:text-white transition-colors group/btn"
              >
-                <span className="text-[10px] font-bold uppercase tracking-wider">Get Directions</span>
+                <span className="text-[10px] font-bold uppercase tracking-wider">
+                  {t("contact.getDirections", "Get Directions")}
+                </span>
                 <Navigation size={12} className="group-hover/btn:rotate-45 transition-transform" />
              </a>
 
@@ -138,17 +136,27 @@ export default function ContactSection() {
               <div className="w-12 h-12 bg-[#F9F6F1] rounded-full flex items-center justify-center mb-4 text-[#C0392B] group-hover:scale-110 transition-transform shadow-inner">
                 <Clock size={24} />
               </div>
-              <h3 className="text-xl font-serif mb-1 text-gray-900">Opening Hours</h3>
-              <p className="text-gray-500 text-sm font-medium">Every single day.</p>
+              <h3 className="text-xl font-serif mb-1 text-gray-900">
+                {t("contact.openingHours", "Opening Hours")}
+              </h3>
+              <p className="text-gray-500 text-sm font-medium">
+                {t("contact.everyDay", "Every single day.")}
+              </p>
             </div>
             <div className="mt-4">
               <div className="flex items-center justify-between mb-2 border-b border-gray-100 pb-2">
-                <span className="text-sm text-gray-600">Mon - Sun</span>
-                <span className="text-sm font-bold text-gray-900">6 AM - 11 PM</span>
+                <span className="text-sm text-gray-600">
+                  {t("contact.days", "Mon - Sun")}
+                </span>
+                <span className="text-sm font-bold text-gray-900">
+                  {t("contact.time", "6 AM - 11 PM")}
+                </span>
               </div>
               <div className={`mt-1 inline-flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-bold ${isOpen ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                 <span className={`w-1.5 h-1.5 rounded-full ${isOpen ? 'bg-green-600 animate-pulse' : 'bg-red-600'}`}></span>
-                {isOpen ? "We are Open Now" : "Currently Closed"}
+                {isOpen 
+                  ? t("contact.openStatus", "We are Open Now") 
+                  : t("contact.closedStatus", "Currently Closed")}
               </div>
             </div>
           </div>
@@ -159,14 +167,14 @@ export default function ContactSection() {
               <Phone size={120} />
             </div>
             <div>
-              <h3 className="text-xl font-serif mb-3">Contact Us</h3>
-              <p className="text-white/80 text-sm mb-0.5 font-medium">Phone</p>
+              <h3 className="text-xl font-serif mb-3">{t("contact.contactUs", "Contact Us")}</h3>
+              <p className="text-white/80 text-sm mb-0.5 font-medium">{t("contact.phone", "Phone")}</p>
               <a href="tel:+919999999999" className="text-2xl font-bold hover:underline decoration-white/30 decoration-2 underline-offset-4">
                 +91 99999 99999
               </a>
             </div>
             <a href="mailto:hello@hotelmauli.com" className="inline-flex items-center gap-2 text-white/90 hover:text-white group relative z-10 text-sm">
-              <span className="font-semibold">Email us directly</span>
+              <span className="font-semibold">{t("contact.email", "Email us directly")}</span>
               <ArrowUpRight size={16} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
             </a>
           </div>
@@ -174,7 +182,7 @@ export default function ContactSection() {
           {/* 4. WHATSAPP BUTTON */}
           <a href="https://wa.me/919999999999" target="_blank" className="bento-item md:col-span-2 bg-[#25D366] hover:bg-[#20bd5a] text-white rounded-[24px] p-4 flex items-center justify-center gap-3 transition-transform hover:scale-[1.01] active:scale-[0.99] group cursor-pointer shadow-lg shadow-green-500/20 h-[220px] md:h-auto">
              <MessageCircle size={28} className="text-white fill-white/20" />
-             <span className="text-xl font-bold tracking-tight">Chat on WhatsApp</span>
+             <span className="text-xl font-bold tracking-tight">{t("contact.whatsapp", "Chat on WhatsApp")}</span>
              <ArrowUpRight size={24} className="bg-white text-[#25D366] rounded-full p-1 group-hover:rotate-45 transition-transform duration-300" />
           </a>
         </div>
@@ -182,19 +190,17 @@ export default function ContactSection() {
         {/* FOOTER */}
         <div className="border-t border-gray-300 pt-6 flex flex-col md:flex-row justify-between items-center gap-4 text-gray-500 text-xs font-medium">
           <div className="flex flex-col md:flex-row items-center gap-4">
-            <p>© {new Date().getFullYear()} Hotel Mauli.</p>
+            <p>© {new Date().getFullYear()} {t("contact.footerName", "Hotel Mauli")}.</p>
             <span className="hidden md:inline text-gray-300">|</span>
-            {/* 🟢 DEVELOPER BUTTON */}
             <a href="https://wa.me/919999999999" target="_blank" rel="noopener noreferrer" className="group flex items-center gap-1.5 px-3 py-1.5 bg-white border border-gray-200 rounded-full hover:border-[#C0392B] hover:text-[#C0392B] transition-all shadow-sm">
               <Code size={12} className="text-gray-400 group-hover:text-[#C0392B] transition-colors" />
-              <span>Contact Web Developer</span>
+              <span>{t("contact.developer", "Contact Web Developer")}</span>
             </a>
           </div>
           <div className="flex gap-6">
-            <a href="https://www.instagram.com/hotel_mauli_amalner?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
+            <a href="#" className="hover:text-[#C0392B] transition-colors flex items-center gap-1.5">
               <Instagram size={14} /> Instagram
             </a>
-           
           </div>
         </div>
 
